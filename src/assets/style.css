@@ -1,0 +1,63 @@
+@import "fonts/fonts.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    html {
+        direction: rtl;
+        overflow-x: hidden ;
+        overflow-y: scroll !important;
+        /*scroll-behavior: smooth;*/
+        -webkit-appearance: none;
+    }
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+        -webkit-appearance: none;
+    }
+    tr,th,td{
+          background: transparent !important;
+      }
+    /* width */
+
+}
+@layer utilities {
+    .fieldLabel{
+        @apply tw-text-right tw-block tw-pr-[20px] tw-text-[#6F6F9D] tw-text-[14px] tw-mb-1
+    }
+    .page-heading{
+        @apply tw-text-lg tw-font-semibold;
+    }
+    .tw-absolute-top-left{
+        @apply tw-absolute -tw-top-1 -tw-left-1 sm:tw-top-1 sm:tw-left-2
+    }
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        /*@apply tw-shadow-md tw-shadow-primary-300*/
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        @apply tw-bg-[#D9D9D9]  tw-rounded-3xl tw-transition-all
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        @apply tw-bg-[#D9D9D9] tw-h-12 tw-transition-all
+    }
+    .divider__title{
+        @apply tw-font-bold tw-text-neutral-500
+    }
+    .tw-rtl {
+        direction: rtl;
+    }
+}

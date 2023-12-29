@@ -1,0 +1,3 @@
+<template>
+  department calendar
+</template>

@@ -1,0 +1,344 @@
+// style for form selectors
+.chipInMultiSelect {
+  .v-chip--variant-tonal .v-chip__underlay {
+    @apply tw-rounded-[20px] tw-pl-[20px] tw-bg-[#F9FAFB] tw-opacity-100 tw-z-[-1] tw-text-[#6F6F9D]
+  }
+}
+.customTextField{
+  .v-field__input{
+    @apply tw-px-[20px] tw-py-[5px];
+  }
+  .v-field--variant-filled {
+    @apply tw-bg-white tw-border tw-border-[#E9ECF6] tw-opacity-100
+  }
+  .v-field__outline::after {
+    @apply tw-left-[10px] tw-w-[calc(100%-20px)]
+  }
+  .v-field__loader {
+    @apply tw-right-[10px] tw-w-[calc(100%-20px)]
+  }
+  .v-field__outline::before {
+    @apply tw-hidden
+  }
+  .v-field--variant-filled .v-field__overlay {
+    @apply tw-bg-white tw-opacity-100
+  }
+  .v-field__input>input {
+    align-self: flex-end !important;
+    flex: 1 1 !important;
+  }
+}
+
+.customTextarea {
+  .v-field {
+    @apply tw-rounded-3xl tw-bg-white
+  }
+
+  .v-field__input{
+    @apply tw-px-[20px] tw-py-[15px];
+  }
+  .v-field--variant-filled {
+    @apply tw-bg-white tw-border tw-border-[#E9ECF6] tw-opacity-100
+  }
+  .v-field__outline::after {
+    @apply tw-left-[10px] tw-w-[calc(100%-20px)]
+  }
+  .v-field__loader {
+    @apply tw-right-[10px] tw-w-[calc(100%-20px)]
+  }
+  .v-field__outline::before {
+    @apply tw-hidden
+  }
+  .v-field--variant-filled .v-field__overlay {
+    @apply tw-bg-white tw-opacity-100
+  }
+}
+
+//custom style for v-select
+  .v-select__selection {
+    @apply tw-h-fit tw-mt-auto tw-mb-auto;
+
+  }
+  // style clear btn in v-select
+  .v-field__append-inner,.v-field__clearable {
+    @apply tw-text-primary
+  }
+.v-select .v-field .v-field__input > input {
+  @apply tw-top-[9px]
+}
+
+  //v-select  v-chip remove-icon position and style
+  .v-chip__close{
+    @apply tw-relative tw-w-[20px] tw-h-[20px] tw-rounded-full tw-bg-[#E3E3F3] tw-text-[#6F6F9D]
+    tw-text-[12px] hover:tw-bg-[#6F6F9D] hover:tw-text-[#E9ECF6] ;
+  }
+  .v-chip__close i {
+    @apply tw-absolute tw-top-[2.5px] tw-left-[1.5px]
+  }
+.vListItemPill{
+  .v-list-item__content{
+    @apply tw-flex tw-items-center tw-justify-between;
+  }
+  .v-list-item__append{
+    svg{
+      opacity:1;
+    }
+  }
+}
+.vCardDashboard{
+  .v-card-item__content{
+    height: 100%;
+  }
+}
+.vSlideGroupFade {
+  position: relative;
+  .v-slide-group__prev,.v-slide-group__next{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    @media only screen and (min-width: 648px){
+      width: 200px;
+    }
+    > i {
+      position: relative;
+      top: -1rem;
+      color: #F68B1F;
+      font-size: 2rem;
+    }
+    &--disabled{
+      display: none;
+      background: none;
+    }
+  }
+  .v-slide-group__prev {
+    right: 0;
+    z-index: 1;
+    background: rgb(255,255,255);
+    background: linear-gradient(-90deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.7) 39%, rgba(247,247,247,0.24413515406162467) 100%);
+    justify-content: flex-start;
+  }
+  .v-slide-group__next {
+    left: 0;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.7) 39%, rgba(247,247,247,0.24413515406162467) 100%);
+    justify-content: flex-end;
+  }
+}
+
+.vBtnToggleEmoji{
+  height: 70px!important;
+  .v-btn__overlay{
+    opacity: 0;
+  }
+  &:hover{
+    .v-btn__overlay{
+      background-color: transparent;
+    }
+  }
+}
+.customChipGroups {
+  .v-chip {
+    background-color: white;
+    padding: 0;
+    align-items: stretch;
+    overflow: initial;
+    border-radius: 50px !important;
+    min-height: 36px;
+    .v-chip__underlay{
+      background: white;
+    }
+    .v-chip__content {
+      @apply tw-px-3 tw-text-sm tw-font-medium tw-hidden
+    }
+
+    .v-chip__prepend {
+      justify-content: center;
+      text-align: center;
+      width: 36px;
+      border-radius: 50%;
+      height: 36px;
+
+      svg {
+        margin: 0 !important;
+        font-size: 20px;
+        fill: #6F6F9D;
+      }
+    }
+
+    &.selected-chip {
+      .v-chip__content {
+        @apply tw-inline-flex tw-text-black
+      }
+
+      .v-chip__prepend {
+        box-shadow: 0px 0px 15px 0px rgba(246, 139, 31, 0.2);
+
+        svg {
+          fill: #F68B1F;
+        }
+      }
+    }
+  }
+}
+.v-menu{
+  .v-overlay__content{
+    border-radius: 15px!important;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    padding: 8px;
+    background: white;
+    opacity: 1;
+    ::-webkit-scrollbar {
+      width: 6px!important;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      @apply tw-bg-[#D9D9D9] tw-rounded-3xl
+    }
+  }
+  .v-list{
+    box-shadow: none!important;
+    .v-list-item{
+      &__content{
+        position: relative;
+        top:2px;
+      }
+    }
+    .v-list-item-title{
+      font-size: 14px;
+    }
+    .v-list-item--active{
+      .v-list-item__overlay{
+        visibility: hidden;
+      }
+      .v-list-item__content{
+        color: #1ABC9C;
+        .v-list-item-title{
+          font-family: YEKAN-BAKH-HEAVY;
+        }
+      }
+    }
+  }
+}
+.v-chip{
+  &__close{
+    i {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+}
+.v-skeleton-loader__table-thead{
+  display: none!important;
+  visibility: hidden !important;
+}
+.v-skeleton-loader__chip{
+  flex: 0!important;
+  padding: 0;
+  margin: 0!important;
+}
+.v-skeleton-loader__chip + .v-skeleton-loader__bone{
+  height: 50px;
+  border-radius: 30px;
+  background: #f5f7fc!important;
+  margin-right: 10px!important;
+  margin-left: 10px!important;
+  margin-top: 10px;
+}
+.v-skeleton-loader__table-row > .v-skeleton-loader__text.v-skeleton-loader__bone{
+  height: 8px!important;
+  border-radius: 15px;
+  opacity: .5;
+  margin: 27px!important;
+}
+.v-skeleton-loader{
+  border-radius:20px!important;
+}
+.v-skeleton-loader__divider{
+  background:#e9ecf6;
+  height: 1px!important;
+  opacity: .8;
+}
+.v-skeleton-loader__table-tfoot{
+  display: none!important;
+}
+.v-skeleton-loader__table-tbody{
+  top: -13px;
+  .v-skeleton-loader__table-row-divider:last-child{
+  position: relative;
+    .v-skeleton-loader__divider{
+      display: none;
+    }
+  }
+}
+.v-btn.inherit .v-btn__content{
+  > svg {
+    fill : inherit;
+  }
+}
+.v-snackbar__content {
+  flex-grow: 1;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.0178571429em;
+  line-height: 1.25rem;
+  margin-right: auto;
+  text-align: initial;
+  @apply lg:tw-p-[14px] tw-p-0;
+}
+
+.v-input--disabled{
+  .v-field__clearable{
+    visibility: hidden;
+  }
+  opacity: .6;
+  .v-field__overlay{
+    background: #ebebeb!important;
+  }
+}
+.customCheckBox{
+   .v-selection-control {
+     min-height: 0 !important;
+  }
+}
+.VChipDate{
+  .v-chip__content {
+    @apply tw-text-slate-900 tw-text-base tw-font-YEKAN-BAKH-MEDIUM
+  }
+  .v-chip__prepend{
+    @apply tw-text-slate-300 tw-text-xs tw-relative -tw-top-1
+  }
+}
+
+// fix switch position in rtl direction and add flex direction
+.switchPosition {
+  direction: ltr;
+  text-align: center;
+}
+.switchPosition .v-input__control .v-selection-control{
+  display: flex;
+  justify-content: space-between;
+}
+.switchPosition .v-input__control .v-selection-control .v-label{
+  width: fit-content;
+}
+
+// add space between checkbox and label
+.v-btn--excel{
+  .v-icon{
+    font-size: 26px;
+  }
+}
+.v-menu .v-list .v-list-item-title {
+  margin-right: 8px;
+}
+.v-badge--inline .v-badge__badge {
+  margin-right: 7px;
+}
+.v-divider{
+  @apply tw-border tw-border-gray-600 tw-flex-1
+}
+.v-overlay--contained .v-overlay__scrim{
+  opacity: .5;
+}
