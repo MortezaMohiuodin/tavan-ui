@@ -33,33 +33,34 @@ export const useAppStore = defineStore('karsu', ()=>{
 
   // action
   const getUserData =async ()=>{
-    try {
-      const res = await useHttpGet('/public/v2/get-user-dashboard')
+    return Promise.resolve()
+    // try {
+    //   const res = await useHttpGet('/public/v2/get-user-dashboard')
 
-      workspace.value = res.Data.Workspace.find(workspace => workspace.IsDefault === true)
-      showDeactiveUser.value = workspace.value.ShowDeactiveUser
-      WID.value = workspace.value.Id
-      permits.value.push(...res.Data.PermissionAndProduct.Permission.flatMap(permitGroup => permitGroup.Permission.map(permit => permit.Value)))
-      productInTerm.value = res.Data.PermissionAndProduct.ProductInTerm.map(product => product.Value.toUpperCase())
-      activePlugins.value = res.Data.PermissionAndProduct.Plugin.map(plugin => plugin.Value)
-      userInfo.value = res.Data.UserProfile
-      userMoodCondition.value = res.Data.UserMoodCondition
+    //   workspace.value = res.Data.Workspace.find(workspace => workspace.IsDefault === true)
+    //   showDeactiveUser.value = workspace.value.ShowDeactiveUser
+    //   WID.value = workspace.value.Id
+    //   permits.value.push(...res.Data.PermissionAndProduct.Permission.flatMap(permitGroup => permitGroup.Permission.map(permit => permit.Value)))
+    //   productInTerm.value = res.Data.PermissionAndProduct.ProductInTerm.map(product => product.Value.toUpperCase())
+    //   activePlugins.value = res.Data.PermissionAndProduct.Plugin.map(plugin => plugin.Value)
+    //   userInfo.value = res.Data.UserProfile
+    //   userMoodCondition.value = res.Data.UserMoodCondition
 
-      const todayTime = res.Data.IO.filter(day => $moment().isDateToday(day.Date))[0]
+    //   const todayTime = res.Data.IO.filter(day => $moment().isDateToday(day.Date))[0]
 
-      badges.value = res.Data.Badge.reduce(function(acc, cur, i) {
-        acc[cur.Kay] = cur.Value
+    //   badges.value = res.Data.Badge.reduce(function(acc, cur, i) {
+    //     acc[cur.Kay] = cur.Value
 
-        return acc
-      }, {})
-      messages.value = res.Data.Message
-      additionalTime = todayTime.AdditionalInfo.AdditionalTime
-      isTimerRunning = todayTime?.AdditionalInfo.IsPlay
+    //     return acc
+    //   }, {})
+    //   messages.value = res.Data.Message
+    //   additionalTime = todayTime.AdditionalInfo.AdditionalTime
+    //   isTimerRunning = todayTime?.AdditionalInfo.IsPlay
 
-      return true
-    }catch (err) {
-      return false
-    }
+    //   return true
+    // }catch (err) {
+    //   return false
+    // }
   }
 
   const resetIdentityData = ()=>{

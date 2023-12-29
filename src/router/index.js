@@ -24,15 +24,12 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   const store = useAppStore()
-  if(store.isTableFilterVisible) store.isTableFilterVisible = false
-  const shouldAdd = !store.historyTabs.find(val=>val.fullPath === to.fullPath)
-  if(shouldAdd && to.fullPath !== '/login'){
-    store.historyTabs.push(to)
-  }
   if (from.name == null) {
     await store.initStore()
   }
-  console.log(to.query)
+  if (to.fullPath.includes('/test')){
+    return({ name: 'test' })
+  }
   if (!store.isLoggedIn && !to.fullPath.includes('/login')){
     return({ name: 'login',query: to.query })
   }

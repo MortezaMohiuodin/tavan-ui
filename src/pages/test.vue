@@ -1,22 +1,26 @@
 <template>
-  <form-section-iterator
-    v-model="arrayValue"
-    :schema="formSchema"
-  />
+  <div>
+    test fgsdgdsg
+  </div>
 </template>
 
 <script setup>
-const arrayValue = ref([])
+import { ofetch } from "ofetch"
 
-const formSchema = ref([
-  { model:'startFieldFrom', component : 'input', title : 'شروع دوره از' ,col : { cols: 4 }  },
-  { model:'endFieldFrom', component : 'input', title : 'پایان دوره تا روز' ,col : { cols: 4 } },
-  { model:'restInThisPeriod', component : 'checkbox' , title: 'در این دوره استراحت کند' ,col : { cols: 4 }  },
+async function login(){
+  return ofetch("/api/users",{ query: { email: 'mortezamohiuodin@gmail.com',password:'123456' } })
+}
+onMounted(async () => {
+  const data = await login()
 
-  // { model:'selectedShift', component : ShiftSelect , title: 'َشیفت مورد نظر' ,col : { cols: 4 } ,condition: val=>val.restInThisPeriod  },
-  { model: 'replaceWithShift' , component : 'checkbox' , title : 'در روز تعطیل شیفت جایگزین تنظیم شود' ,col : { cols: 4 } , condition: val=>val.restInThisPeriod },
-
-  // { model:'replacedShift', component : ShiftSelect , title: 'شیفت جایگزین' ,col : { cols: 4 } ,condition: val=>val.replaceWithShift  },
-])
+  console.log(data)
+})
 </script>
 
+<route>
+  {
+  meta: {
+  layout: "blank"
+  }
+  }
+  </route>
