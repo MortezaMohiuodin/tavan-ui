@@ -1,7 +1,7 @@
 /**
  Helper functions to skip repeating code.
  */
-function extractRequirePermits(array) {
+ function extractRequirePermits(array) {
   const requirePermits = []
   function traverse(children) {
     children.forEach(child=> {
@@ -22,10 +22,10 @@ function extractRequirePermits(array) {
  main menu items
 */
 
-const UsersItems =  [
+const KARPOOSHEManagerItems =  [
   {
-    title: 'کاربران',
-    route: '/users',
+    title: 'همکاران',
+    route: '/KARPOOSHE/basic/employees',
     requirePermit: [],
     requirePlugin: [],
     completelyDisable: false,
@@ -33,13 +33,31 @@ const UsersItems =  [
     badgeKey: '',
   },
   {
-    title: 'تنظیمات',
+    title: 'اطلاعات پایه ای',
     badgeKey: '',
     children: [
       {
-        title: 'سیستم داخلی',
-        route: '/setting/system',
+        title: 'دپارتمان',
+        route: '/KARPOOSHE/basic/department',
         requirePermit: [],
+        requirePlugin: [],
+        lacksPermission: [],
+        completelyDisable: false,
+        badgeKey: '',
+      },
+      {
+        title: 'مدیریت دسترسی ها',
+        route: '/KARPOOSHE/basic/roles',
+        requirePermit: [],
+        requirePlugin: [],
+        lacksPermission: [],
+        completelyDisable: false,
+        badgeKey: '',
+      },
+      {
+        title: 'پست سازمانی',
+        route: '/KARPOOSHE/basic/organization',
+        requirePermit: ['OrgPositionalManager'],
         requirePlugin: [],
         lacksPermission: [],
         completelyDisable: false,
@@ -115,20 +133,42 @@ const UsersItems =  [
   },
 ]
 
+const KARPOSHEEmployeeItems = [
+  {
+    title: 'کاربران',
+    badgeKey: '',
+    requirePermit:  [],
+    requirePlugin: [],
+    lacksPermission: [],
+    completelyDisable: false,
+    children: [
+      {
+        title: 'لیست کاربران',
+        route: '/users',
+        requirePermit: [],
+        requirePlugin: [],
+        lacksPermission: [],
+        completelyDisable: true,
+        badgeKey: '',
+      },
+    ],
+  },
+]
+
 
 
 export const headCategories = [
   {
-    title: 'کاربران',
-    subTitle: 'مدیریت کاربران',
+    title: 'مدیریت',
+    subTitle: 'کلینیک',
     icon: 'custom:KARPOOSHE',
     requireProduct: [],
-    subGroup: 'USERS',
+    subGroup: 'KARPOOSHE',
   },
 ]
 export const menuItems = {
-  USERS: [
-    ...UsersItems,
+  KARPOOSHE: [
+    ...KARPOSHEEmployeeItems,
   ],
 }
 

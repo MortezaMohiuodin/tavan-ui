@@ -85,6 +85,8 @@ import flipHorizontal from './flipHorizontal.vue'
 import flipVertical from './flipVertical.vue'
 import KARSAAL from './KARSAAL.vue'
 import camera from './camera.vue'
+import medical from './medical.vue'
+
 
 const customSvgNameToComponent: any = {
   warning,
@@ -169,16 +171,17 @@ const customSvgNameToComponent: any = {
   flipHorizontal,
   flipVertical,
   KARSAAL,
-  camera
+  camera,
+  medical
 };
 
 const customSVGs: IconSet = {
   component: (props: IconProps) => {
-    if(props?.icon){
+    if (props?.icon) {
       return h(customSvgNameToComponent[props.icon])
     }
   },
 };
 
 export { customSVGs /* aliases */ };
-export {customSvgNameToComponent}
+export { customSvgNameToComponent }

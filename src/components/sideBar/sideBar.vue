@@ -38,15 +38,7 @@
                 class="tw-mb-6"
                 :ripple="false"
               >
-                <template #title>
-                  <v-badge
-                    inline
-                    color="info"
-                    max="10000"
-                  >
-                    <span class="tw-mr-2 tw-text-white"> {{ category.title }}</span>
-                  </v-badge>
-                </template>
+                <span class="tw-mr-2 tw-text-white"> {{ category.title }}</span>
                 <template #subtitle>
                   <span class="tw-mr-2 tw-text-white">{{ category.subTitle }}</span>
                 </template>
@@ -70,6 +62,7 @@
               </v-list-item>
             </template>
             <!--    Define the category names, such as "Basic," "Assignment," and "Report," along with their corresponding submenus for each product.  -->
+            <sub-group :items="menuItems[category.subGroup]" />
           </v-list-group>
         </template>
       </v-list>
