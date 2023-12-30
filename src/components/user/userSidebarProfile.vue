@@ -2,11 +2,11 @@
   <div class="tw-h-full tw-p-2 tw-flex tw-flex-col tw-overflow-hidden">
     <div class="tw-grow-0 tw-flex tw-bg-[#F5F7FC] tw-rounded-3xl tw-py-8 tw-px-4 tw-mb-6">
       <v-avatar
-        v-if="store.userInfo.Pic"
+        v-if="store.userInfo?.Pic"
         class="!tw-rounded-xl tw-me-3"
         rounded="initial"
         size="75"
-        :image="store.userInfo.Pic"
+        :image="store.userInfo?.Pic"
       />
       <v-avatar
         v-else
@@ -17,12 +17,12 @@
       />
       <div>
         <h4 class="tw-text-lg tw-font-YEKAN-BAKH-HEAVY">
-          {{ store.userInfo.Name }} {{ store.userInfo.Family }}
+          {{ store.userInfo?.Name }} {{ store.userInfo?.Family }}
         </h4>
         <span class="tw-text-[#959499] tw-text-base tw-font-YEKAN-BAKH-Medium">
           کد پرسنلی
           :
-          {{ store.userInfo.OrgPositionCode || '-' }}
+          {{ store.userInfo?.OrgPositionCode || '-' }}
         </span>
       </div>
     </div>
@@ -33,7 +33,7 @@
             شماره همراه
           </div>
           <div class="tw-text-base tw-text-K_black tw-font-YEKAN-BAKH-MEDIUM">
-            {{ store.userInfo.Mobile || '-' }}
+            {{ store.userInfo?.Mobile || '-' }}
           </div>
         </div>
         <div class="tw-mb-4 tw-ms-6">
@@ -41,7 +41,7 @@
             پست الکترونیک
           </div>
           <div class="tw-text-base tw-text-K_black tw-font-YEKAN-BAKH-MEDIUM">
-            {{ store.userInfo.Email || '-' }}
+            {{ store.userInfo?.Email || '-' }}
           </div>
         </div>
         <div class="tw-mb-4 tw-ms-6">
@@ -49,15 +49,12 @@
             جنسیت
           </div>
           <div class="tw-text-base tw-text-K_black tw-font-YEKAN-BAKH-MEDIUM">
-            {{ store.userInfo.Gender !== null ? $getEnum($enums.Gender , 'key' , store.userInfo.Gender,'value') : 'نامشخص' }}
+            {{ store.userInfo?.Gender !== null ? $getEnum($enums.Gender , 'key' , store.userInfo.Gender,'value') : 'نامشخص' }}
           </div>
         </div>
         <div class="tw-mb-4 tw-ms-6">
           <div class="tw-text-base tw-text-[#959499] tw-font-medium">
             گروه شغلی
-          </div>
-          <div class="tw-text-base tw-text-K_black tw-font-YEKAN-BAKH-MEDIUM">
-            {{ store.userInfo.OrgPositionTitle || 'نامشخص' }}
           </div>
         </div>
         <div class="tw-mb-4 tw-ms-6">
@@ -65,7 +62,7 @@
             تاریخ تولد
           </div>
           <div class="tw-text-base tw-text-K_black tw-font-YEKAN-BAKH-MEDIUM">
-            {{ $moment(store.userInfo.Birthday).format('jYYYY/jM/jD') }}
+            {{ $moment(store.userInfo?.Birthday).format('jYYYY/jM/jD') }}
           </div>
         </div>
       </div>

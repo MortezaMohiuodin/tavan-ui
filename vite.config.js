@@ -157,14 +157,7 @@ export default defineConfig({
     ],
   },
   server: {
-    port: 9090,
-    proxy: {
-      '/': {
-        target: 'http://localhost:3000',
-        // target: 'https://stage2.karsu.ir/',
-        // changeOrigin: true,
-        secure: false,
-      },
-    },
+    port: 5173,
+    proxy: 'http://localhost:3000',
   },
 })

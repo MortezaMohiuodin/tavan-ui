@@ -1,5 +1,5 @@
 {
-  "name": "karsu-v2",
+  "name": "tavan-ui",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host",
@@ -12,6 +12,7 @@
     "@mdi/font": "7.0.96",
     "@vueuse/components": "^10.1.2",
     "@vueuse/core": "^10.1.2",
+    "axios": "^1.6.3",
     "moment-jalaali": "^0.10.0",
     "notiwind": "^2.0.1",
     "ofetch": "^1.0.1",

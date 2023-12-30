@@ -36,7 +36,6 @@
                 v-bind="props"
                 prepend-avatar="custom:KARSAAT"
                 class="tw-mb-6"
-                :disabled="!store.productInTerm.includes(category.subGroup)"
                 :ripple="false"
               >
                 <template #title>
@@ -44,8 +43,6 @@
                     inline
                     color="info"
                     max="10000"
-                    :content="store.badges[category.badgeKey]"
-                    :model-value="!!store.badges[category.badgeKey]"
                   >
                     <span class="tw-mr-2 tw-text-white"> {{ category.title }}</span>
                   </v-badge>
@@ -73,7 +70,6 @@
               </v-list-item>
             </template>
             <!--    Define the category names, such as "Basic," "Assignment," and "Report," along with their corresponding submenus for each product.  -->
-            <sub-group :items="menuItems[category.subGroup]" />
           </v-list-group>
         </template>
       </v-list>

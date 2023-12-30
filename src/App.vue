@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="store.isAppReady">
+    <div v-if="true">
       <v-locale-provider
         :rtl="layoutIsRtl"
         :class="{isRtl: layoutIsRtl}"
@@ -17,7 +17,7 @@
     <v-overlay
       v-else
       scrim="white"
-      :model-value="!store.isAppReady"
+      :model-value="false"
       class="align-center justify-center"
       contained
     >

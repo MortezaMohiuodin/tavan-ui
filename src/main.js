@@ -26,6 +26,6 @@ app.mount('#app')
 // To begin, access the app store to retrieve user information, including permissions, products, and plugins.
 import { useAppStore } from '@/store/app'
 
-useAppStore()
+// useAppStore()
 
 export default app

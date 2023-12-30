@@ -26,9 +26,9 @@
             @click="showUserDrawer = !showUserDrawer"
           >
             <v-img
-              v-if="store.userInfo.Pic"
+              v-if="store.userInfo?.Pic"
               alt="Avatar"
-              :src="store.userInfo.Pic"
+              :src="store.userInfo?.Pic"
             />
             <v-icon
               v-else

@@ -6,24 +6,21 @@
       <user-name-date />
     </div>
     <div class="tw-ml-4">
-      <timer />
+      placehodler
     </div>
-    <!--    <div class="tw-ml-4"> -->
-    <!--      <projectSelector></projectSelector> -->
-    <!--    </div> -->
     <div class="tw-ml-4">
-      <inbox />
+      inbox
+      <!-- <inbox /> -->
     </div>
     <div>
-      <user-option />
+      user option
+      <!-- <user-option /> -->
     </div>
   </div>
-<!--  <history-tabs />-->
 </template>
 
 <script setup>
 import { useDisplay } from 'vuetify'
-import Timer from "@/components/header/timer.vue"
 
 const { smAndDown } = useDisplay()
 </script>
