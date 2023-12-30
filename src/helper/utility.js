@@ -1,3 +1,5 @@
+
+
 export function uuidv4() {
   return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
     (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16),
@@ -124,3 +126,22 @@ export const bytesToSize = (bytes, short = true) => {
 
   return Math.round(bytes) + ' ' + sizes[i]
 }
+
+// export const checkIfTokenNeedsRefresh = () => {
+//   // Checks if time set in localstorage is past to check for refresh token
+//   if (
+//     window.localStorage.getItem('token') !== null &&
+//     window.localStorage.getItem('tokenExpiration') !== null
+//   ) {
+//     if (
+//       isPast(
+//         new Date(
+//           parseISO(JSON.parse(window.localStorage.getItem('tokenExpiration'))) *
+//             1000,
+//         ),
+//       )
+//     ) {
+//       store.dispatch('refreshToken')
+//     }
+//   }
+// }

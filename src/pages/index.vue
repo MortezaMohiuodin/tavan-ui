@@ -1,18 +1,13 @@
 <template>
   <div>
-    f
-    dsaf
-    dsaf
-    sdaf
-    dsa
-    f
-    dsaf
-    sad
-    fzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-    
-    dashboard
+    Main Site
   </div>
 </template>
+
+<script setup>
+const store = useAppStore()
+
+</script>
 
 <route>
 {

@@ -4,21 +4,21 @@
     <div class="logoContainer">
       <img
         src="@/assets/images/dotin.png"
-        class="tw-h-full tw-w-full tw-object-cover"
+        class="tw-h-full tw-w-full tw-object-cover tw-hidden"
       >
     </div>
     <div class="fieldContainer">
       <div class="fieldWrapper">
         <div class="loginTitle">
-          ورود به داتین
+          ورود به توان
         </div>
         <div class="loginSubtitle">
-          نام کاربری و رمزعبور را وارد کنید.
+          ایمیل و رمز عبور را وارد نمایید
         </div>
         <div>
           <v-form @submit.prevent="login">
             <v-c-text-field
-              v-model="userName"
+              v-model="email"
               variant="solo-filled"
               clearable
               class="LoginTextField mb-4"
@@ -27,7 +27,7 @@
             >
               <template #label>
                 <v-icon
-                  icon="mdi:mdi-account"
+                  icon="mdi:mdi-email"
                   size="18"
                   class="tw-mb-[4px]"
                   color="#8CB6A4"
@@ -71,13 +71,6 @@
             >
               ورود
             </v-btn-warning>
-            <v-btn-warning
-              color="orange"
-              class="tw-mr-0 tw-mt-8 tw-w-full"
-              @click="login"
-            >
-              ورود با داتین
-            </v-btn-warning>
           </v-form>
           <!--          <VCheckboxPrimary> -->
           <!--            <template #label> -->
@@ -97,7 +90,7 @@ import { ofetch } from 'ofetch'
 
 let showPassword = ref(false)
 let password = ref(null)
-let userName = ref(null)
+let email = ref(null)
 let loading = ref(false)
 let store = useAppStore()
 async function login() {
@@ -108,16 +101,15 @@ async function login() {
       baseURL : 'http://localhost:3000',
       method: 'POST',
       body: {
-        email : userName.value,
+        email : email.value,
         password : password.value,
       },
     })
 
-    console.log(response)
     store.token = response.token
     store.userInfo = response.user
-    router.push('/')
-    // await store.initStore()
+    await store.initStore()
+    router.push('/dashboard')
 
  
   } catch (error) {
