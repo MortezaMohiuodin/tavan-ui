@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="true">
+    <div v-if="store.isAppReady">
       <v-locale-provider
         :rtl="layoutIsRtl"
         :class="{isRtl: layoutIsRtl}"
@@ -17,12 +17,12 @@
     <v-overlay
       v-else
       scrim="white"
-      :model-value="false"
+      :model-value="!store.isAppReady"
       class="align-center justify-center"
       contained
     >
       <div class="tw-text-center">
-        <dotin-loading />
+        <page-loading />
       </div>
     </v-overlay>
   </div>
@@ -33,4 +33,7 @@ import { useAppStore } from '@/store/app'
 
 const store = useAppStore()
 let layoutIsRtl = ref(true)
+onMounted(() => {
+  store.isAppReady = true
+})
 </script>

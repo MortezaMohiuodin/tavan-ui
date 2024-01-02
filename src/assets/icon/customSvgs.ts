@@ -12,15 +12,10 @@ import eye from "./eye.vue"
 import checkboxFalse from "./checkboxFalse.vue"
 import checkboxTrue from "./checkboxTrue.vue"
 import info from "./info.vue"
-import KARSAAT from "./KARSAAT.vue"
-import KARPOOSHE from "./KARPOOSHE.vue"
-import dotinLogo from "./dotinLogo.vue"
 import envelop from "./envelop.vue"
 import calendar from "./calendar.vue"
-import calendarCheck from "./calendarCheck.vue"
 import emptyDocument from "./emptyDocument.vue";
 import clock from "./clock.vue";
-import IO from "./IO.vue";
 import logOut from "./logOut.vue";
 import arrowUp from "./arrowUp.vue"
 import arrowDown from "./arrowDown.vue"
@@ -32,7 +27,6 @@ import description from "./description.vue"
 import history from "./history.vue"
 import report from "./report.vue"
 import add from "./add.vue"
-import calendar2 from "./calendar2.vue"
 import chevronDown from "./chevronDown.vue"
 import chevronUp from "./chevronUp.vue"
 import home from './home.vue'
@@ -52,40 +46,16 @@ import edit from './edit.vue'
 import checkCircle from './checkCircle.vue'
 import exclamationMark from './exclamationMark.vue'
 import infoCircle from './infoCircle.vue'
-import legalWorkDays from './legalWorkDays.vue'
-import workDaysCount from './workDaysCount.vue'
-import restDays from './restDays.vue'
-import missionHourly from './missionHourly.vue'
-import mission from './mission.vue'
-import rushTime from './rushTime.vue'
-import delayTime from './delayTime.vue'
-import absent from './absent.vue'
-import vacationHourly from './vacationHourly.vue'
-import vacation from './vacation.vue'
-import rotateWork4 from './rotateWork4.vue'
-import rotateWork3 from './rotateWork3.vue'
-import rotateWork2 from './rotateWork2.vue'
-import rotateWork1 from './rotateWork1.vue'
-import shortageTime from './shortageTime.vue'
-import overtimeFriday from './overtimeFriday.vue'
-import overtimeHoliday from './overtimeHoliday.vue'
-import project from './project.vue'
-import weekCalendar from './weekCalendar.vue'
-import clockWork from './clockWork.vue'
-import dotinCircle from './dotinCircle.vue'
-import dotin from './dotin.vue'
 import tableArchive from './archive.vue'
-import nightWork from "./nightWork.vue";
 import excel from './excel.vue'
-import link from './link.vue'
 import close from './close.vue'
-import year from './year.vue'
 import addFile from './addFile.vue'
 import flipHorizontal from './flipHorizontal.vue'
 import flipVertical from './flipVertical.vue'
-import KARSAAL from './KARSAAL.vue'
 import camera from './camera.vue'
 import medical from './medical.vue'
+import logo from './logo.vue'
+
 
 
 const customSvgNameToComponent: any = {
@@ -100,16 +70,11 @@ const customSvgNameToComponent: any = {
   checkboxFalse,
   checkboxTrue,
   info,
-  KARSAAT,
-  KARPOOSHE,
-  dotinLogo,
   envelop,
   pen,
   calendar,
-  calendarCheck,
   emptyDocument,
   logOut,
-  IO,
   clock,
   arrowUp,
   arrowDown,
@@ -120,7 +85,6 @@ const customSvgNameToComponent: any = {
   history,
   report,
   add,
-  calendar2,
   chevronDown,
   chevronUp,
   building,
@@ -140,39 +104,15 @@ const customSvgNameToComponent: any = {
   checkCircle,
   exclamationMark,
   infoCircle,
-  legalWorkDays,
-  workDaysCount,
-  restDays,
-  missionHourly,
-  mission,
-  rushTime,
-  delayTime,
-  absent,
-  vacationHourly,
-  vacation,
-  rotateWork4,
-  rotateWork3,
-  rotateWork2,
-  rotateWork1,
-  shortageTime,
-  overtimeFriday,
-  overtimeHoliday,
-  project,
-  weekCalendar,
-  clockWork,
-  dotinCircle,
-  nightWork,
-  dotin,
   tableArchive,
   excel,
   close,
-  year,
   addFile,
   flipHorizontal,
   flipVertical,
-  KARSAAL,
   camera,
-  medical
+  medical,
+  logo
 };
 
 const customSVGs: IconSet = {

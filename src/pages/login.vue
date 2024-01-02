@@ -10,7 +10,7 @@
     <div class="fieldContainer">
       <div class="fieldWrapper">
         <div class="loginTitle">
-          ورود به دکتر توان
+          ورود به پنل
         </div>
         <div class="loginSubtitle">
           ایمیل و رمز عبور را وارد نمایید

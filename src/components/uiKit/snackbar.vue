@@ -45,7 +45,6 @@
 <script setup>
 import { useRtl , useDisplay } from 'vuetify'
 import { useSnackbar } from '@/composables/useSnackbar'
-import Icon from '@/components/docsComponent/icon.vue'
 
 const { snackbars } = useSnackbar()
 const { isRtl } = useRtl()

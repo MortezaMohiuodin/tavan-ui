@@ -1,4 +1,4 @@
-import { defineStore , getActivePinia } from 'pinia'
+import { defineStore  } from 'pinia'
 
 export const useAppStore = defineStore('tavan', ()=>{
   const router = useRouter()
@@ -9,9 +9,6 @@ export const useAppStore = defineStore('tavan', ()=>{
   let isAppReady = ref(false)
   let isLoggedIn = ref(false)
   let drawer = ref(true)
-  let lastItem  = ref(null)
-  let tableFilter = ref({})
-  let pageStepInPagination = ref(1)
   const store = useAppStore()
 
   // action
@@ -40,14 +37,15 @@ export const useAppStore = defineStore('tavan', ()=>{
   const resetIdentityData = ()=>{
     token.value = ''
     userInfo.value = null
-    isAppReady.value = true
+    isAppReady.value = false
     isLoggedIn.value = false
   }
 
 
   async function initStore() {
-    isLoggedIn.value = await getUserData() 
     isAppReady.value = true
+
+    isLoggedIn.value = await getUserData() 
   }
 
   const logout =async ()=>{
@@ -66,15 +64,11 @@ export const useAppStore = defineStore('tavan', ()=>{
     userInfo,
     isAppReady,
     isLoggedIn,
-
+    drawer,
     // action
     resetIdentityData,
     initStore,
-    drawer,
     logout,
-    lastItem,
-    tableFilter,
-    pageStepInPagination,
     getUserData,
   }
 })

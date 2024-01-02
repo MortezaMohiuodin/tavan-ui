@@ -1,10 +1,7 @@
 <template>
-  <h1 class="tw-text-md tw-font-black tw-text-neutral-800">
-    {{ userInfo?.Name }}  {{ userInfo?.Family }}
-  </h1>
   <div class="tw-mt-1">
     <v-icon
-      icon="far fa-calendar-alt"
+      icon="custom:calendar"
       size="20"
       color="primary"
       class="tw-ml-1"

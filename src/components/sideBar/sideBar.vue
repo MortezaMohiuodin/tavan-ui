@@ -4,7 +4,7 @@
     <div class="headerContainer">
       <div class="headerWrapIcon">
         <v-icon
-          icon="custom:dotinLogo"
+          icon="custom:logo"
           size="70"
           class="tw-m-auto"
         />

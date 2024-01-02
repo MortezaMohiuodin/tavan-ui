@@ -1,18 +1,13 @@
 <template>
   <div>
-    Main Site
+    Main Page
   </div>
 </template>
-
-<script setup>
-const store = useAppStore()
-
-</script>
 
 <route>
 {
     meta: {
-    title: "fdasfsa"
+    title: "Main Page"
     }
 }
 </route>

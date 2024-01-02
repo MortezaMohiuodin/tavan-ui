@@ -5,22 +5,33 @@
     <div class="tw-ml-auto">
       <user-name-date />
     </div>
-    <div class="tw-ml-4">
-      placehodler
-    </div>
-    <div class="tw-ml-4">
-      inbox
-      <!-- <inbox /> -->
-    </div>
     <div>
-      user option
-      <!-- <user-option /> -->
+      <v-menu
+      :close-on-content-click="false"
+      width="200"
+    >
+      <template #activator="{props}">
+        <v-btn
+            variant="flat"
+            icon="custom:user"
+            height="46"
+            class="tw-w-fit tw-px-0"
+            style="border-radius: 15px !important;"
+            v-bind="props"
+          />
+      </template>
+      <v-list>
+        <v-list-item @click="token = null">
+          خروج
+        </v-list-item>
+      </v-list>
+    </v-menu>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useDisplay } from 'vuetify'
-
+let token = ref(useLocalStorage('token', ''))
 const { smAndDown } = useDisplay()
 </script>
