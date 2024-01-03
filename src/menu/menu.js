@@ -22,10 +22,9 @@
  main menu items
 */
 
-const UserItems =  [
+const MAINItems =  [
   {
-    title: 'همکاران',
-    route: '/employees',
+    title: 'پنل کاربری',
     requirePermit: [],
     requirePlugin: [],
     completelyDisable: false,
@@ -33,23 +32,17 @@ const UserItems =  [
     badgeKey: '',
     children: [
       {
-        title: 'لیست',
-        route: '/employees/list',
+        title: 'داشبورد',
+        route: '/dashboard',
         requirePermit: [],
         requirePlugin: [],
         lacksPermission: [],
         completelyDisable: false,
         badgeKey: '',
       },
-    ],
-  },
-  {
-    title: 'اطلاعات پایه ای',
-    badgeKey: '',
-    children: [
       {
         title: 'کاربران',
-        route: '/basic/users',
+        route: '/dashboard/users',
         requirePermit: [],
         requirePlugin: [],
         lacksPermission: [],
@@ -66,16 +59,16 @@ const UserItems =  [
 
 export const headCategories = [
   {
-    title: 'بخش کاربران',
-    subTitle: 'مدیریت کاربران',
+    title: 'بخص اصلی',
+    subTitle: 'مدیریت',
     icon: 'custom:user',
     requireProduct: [],
-    subGroup: 'USER',
+    subGroup: 'MAIN',
   },
 ]
 export const menuItems = {
-  USER: [
-    ...UserItems,
+  MAIN: [
+    ...MAINItems,
   ],
 }
 
