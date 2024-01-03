@@ -14,23 +14,25 @@ export const useAppStore = defineStore('tavan', ()=>{
   // action
   const getUserData =async ()=>{
     return new Promise(async (resolve,reject)=>{
-      let token = ref(useLocalStorage('token', ''))
-      let user = ref(useLocalStorage('user', ''))
+      let token = ref(useLocalStorage('token'))
+      let user = ref(useLocalStorage('user'))
       if(token && user){
         store.user = user.value
         store.token = token.value
         resolve(user)
         
         return
+      }else{
+        reject(false)
       }
-      try{
-        const res = await useHttpGet('get-user')
+      // try{
+      //   const res = await useHttpGet('get-user')
 
-        user.value = res.user
-        user.token = res.token
-      }catch(e){
-        router.push('/login')
-      }
+      //   user.value = res.user
+      //   user.token = res.token
+      // }catch(e){
+      //   router.push('/login')
+      // }
     })
   }
 
