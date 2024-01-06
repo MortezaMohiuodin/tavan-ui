@@ -1,13 +1,36 @@
 <template>
-  <div class="vDatatableServerCustom" :class="{ 'lastColumnFixed': !!actionSchema }">
-    <v-data-table-server v-bind="$attrs" id="tableWidthHeight" v-model="selected" :headers="showColumns" :items="items"
-      :loading="loading && !isFirstLoading" items-length="10">
-      <template v-for="(itemColumn, index) in columns" #[itemColumn.slotColumnName]="{ column }" :key="index">
+  <div
+    class="vDatatableServerCustom"
+    :class="{ 'lastColumnFixed': !!actionSchema }"
+  >
+    <v-data-table-server
+      v-bind="$attrs"
+      id="tableWidthHeight"
+      v-model="selected"
+      :headers="showColumns"
+      :items="items"
+      :loading="loading && !isFirstLoading"
+      items-length="10"
+    >
+      <template
+        v-for="(itemColumn, index) in columns"
+        #[itemColumn.slotColumnName]="{ column }"
+        :key="index"
+      >
         <template v-if="itemColumn.key === 'action'">
           <div class="tw-flex tw-justify-end">
-            <v-btn-refresh v-tooltip="'بارگیری مجدد'" size="small" style="z-index: 10;"
-              :class="[{ 'tw-animate-spin': loading }]" @click="reload" />
-            <v-btn-setting v-tooltip="'تنظیمات جدول'" size="small" @click="showSettingDialog = true" />
+            <v-btn-refresh
+              v-tooltip="'بارگیری مجدد'"
+              size="small"
+              style="z-index: 10;"
+              :class="[{ 'tw-animate-spin': loading }]"
+              @click="reload"
+            />
+            <v-btn-setting
+              v-tooltip="'تنظیمات جدول'"
+              size="small"
+              @click="showSettingDialog = true"
+            />
           </div>
         </template>
         <template v-else>
@@ -17,46 +40,92 @@
         </template>
       </template>
 
-      <template v-for="(column, index) in columns" #[column.slotName]="{ item }">
+      <template
+        v-for="(column, index) in columns"
+        #[column.slotName]="{ item }"
+      >
         <div :key="index">
           {{ item[column.key] }}
         </div>
       </template>
 
-      <template v-for="(_, slot) of $slots" #[slot]="scope">
-        <slot :name="slot" v-bind="scope" />
+      <template
+        v-for="(_, slot) of $slots"
+        #[slot]="scope"
+      >
+        <slot
+          :name="slot"
+          v-bind="scope"
+        />
       </template>
-      <template v-if="actionSchema?.actions?.length" #[`item.action`]="allProps">
-        <div class="tw-flex tw-gap-1.5 tw-justify-end fixed tw-overflow-x-hidden"
-          :style="{ width: actionSchema?.width ? actionSchema.width : actionSchema?.actions.length * (32 + 6) }">
-          <slot name="item.action" v-bind="allProps" />
-          <template v-for="(action, index) in actionSchema?.actions" :key="index">
-            <v-btn-table v-if="(typeof action === 'object' && action.icon)" v-tooltip="action?.label || ''"
+      <template
+        v-if="actionSchema?.actions?.length"
+        #[`item.action`]="allProps"
+      >
+        <div
+          class="tw-flex tw-gap-1.5 tw-justify-end fixed tw-overflow-x-hidden"
+          :style="{ width: actionSchema?.width ? actionSchema.width : actionSchema?.actions.length * (32 + 6) }"
+        >
+          <slot
+            name="item.action"
+            v-bind="allProps"
+          />
+          <template
+            v-for="(action, index) in actionSchema?.actions"
+            :key="index"
+          >
+            <v-btn-table
+              v-if="(typeof action === 'object' && action.icon)"
+              v-tooltip="action?.label || ''"
               v-bind="action"
               :disabled="!!action.disabledCondition ? action.disabledCondition(allProps.item?.raw) : false"
-              @click="action?.emit(allProps.item?.raw)" />
-            <v-btn-table-view v-if="(typeof action === 'string' && action === 'view')" v-tooltip="'مشاهده'"
-              @click="emit('onView', allProps.item)" />
-            <v-btn-table-edit v-if="(typeof action === 'string' && action === 'edit')" v-tooltip="'ویرایش'"
-              @click="emit('onEdit', allProps.item)" />
-            <v-btn-table-trash v-if="(typeof action === 'string' && action === 'delete')" v-tooltip="'حذف'"
-              @click="emit('onDelete', allProps.item)" />
+              @click="action?.emit(allProps.item?.raw)"
+            />
+            <v-btn-table-view
+              v-if="(typeof action === 'string' && action === 'view')"
+              v-tooltip="'مشاهده'"
+              @click="emit('onView', allProps.item)"
+            />
+            <v-btn-table-edit
+              v-if="(typeof action === 'string' && action === 'edit')"
+              v-tooltip="'ویرایش'"
+              @click="emit('onEdit', allProps.item)"
+            />
+            <v-btn-table-trash
+              v-if="(typeof action === 'string' && action === 'delete')"
+              v-tooltip="'حذف'"
+              @click="emit('onDelete', allProps.item)"
+            />
           </template>
         </div>
       </template>
       <template #bottom />
     </v-data-table-server>
-    <pagination v-model="page" :length="totalPages" />
-    <v-dialog-extend v-model="showSettingDialog" title="تنظیمات جدول" confirm-btn-text="اعمال" width="500"
-      cancel-btn-text="انصراف" @on-cancel="showSettingDialog = false"
-      @on-confirm="selectedColumns = setting.selectedColumns">
+    <pagination
+      v-model="page"
+      :length="totalPages"
+    />
+    <v-dialog-extend
+      v-model="showSettingDialog"
+      title="تنظیمات جدول"
+      confirm-btn-text="اعمال"
+      width="500"
+      cancel-btn-text="انصراف"
+      @on-cancel="showSettingDialog = false"
+      @on-confirm="selectedColumns = setting.selectedColumns"
+    >
       <div class="tw-my-4">
         <label class="fieldLabel">
           نمایش ستون ها
         </label>
         <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-mx-3 tw-bg-slate-100 tw-rounded-xl tw-py-3 tw-px-2">
-          <v-checkbox v-for="column in columns" :key="column.key" v-model="setting.selectedColumns" :label="column.title"
-            :value="column.key" />
+          <v-checkbox
+            v-for="column in columns"
+            :key="column.key"
+            v-model="setting.selectedColumns"
+            :label="column.title"
+            :value="column.key"
+          />
         </div>
       </div>
     </v-dialog-extend>

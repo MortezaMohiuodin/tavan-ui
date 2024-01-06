@@ -1,7 +1,11 @@
 <template>
   <table-page-header />
 
-  <table-page-data ref="tableRef" :service="service" :table-schema="tableSchema" />
+  <table-page-data
+    ref="tableRef"
+    :service="service"
+    :table-schema="tableSchema"
+  />
 </template>
   
 <script setup>
