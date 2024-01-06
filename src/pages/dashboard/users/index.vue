@@ -12,31 +12,31 @@ const tableSchema = [
     title: 'نام',
     key: 'name',
   },
-  {
-    title: 'ایمیل',
-    key: 'email',
-  },
-  {
-    title: 'نقض',
-    key: 'role',
-  },
-  {
-    title: 'احراز شده',
-    key: 'verified',
-  },
-  {
-    title: 'موبایل',
-    key: 'phone',
-  },
-  {
-    title: 'تاریخ ثبت',
-    key: 'createdAt',
-  },
-  {
-    key: 'action',
-    align: 'center',
-    actions: [],
-  }
+  // {
+  //   title: 'ایمیل',
+  //   key: 'email',
+  // },
+  // {
+  //   title: 'نقض',
+  //   key: 'role',
+  // },
+  // {
+  //   title: 'احراز شده',
+  //   key: 'verified',
+  // },
+  // {
+  //   title: 'موبایل',
+  //   key: 'phone',
+  // },
+  // {
+  //   title: 'تاریخ ثبت',
+  //   key: 'createdAt',
+  // },
+  // {
+  //   key: 'action',
+  //   align: 'center',
+  //   actions: [],
+  // },
 ]
 
 
@@ -50,15 +50,17 @@ const service = async (payload = {}) => {
       // sort: 'name',
       // order: -1,
     }
+
     const res = await useHttpGet('/users', { params })
+
     res['Data'] = res.docs
     res['TotalRow'] = res.totalDocs
+
     return res
   } catch (e) {
     throw new Error(e)
   }
 }
-
 </script>
   
   
@@ -66,7 +68,7 @@ const service = async (payload = {}) => {
 <route>
       {
         meta: {
-          title: "لیست دپارتمان ها"
+          title: "لیست کاربران"
         }
       }
     </route>

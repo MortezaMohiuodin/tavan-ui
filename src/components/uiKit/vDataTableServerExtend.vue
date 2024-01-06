@@ -1,102 +1,51 @@
 <template>
   <div class="vDatatableServerCustom" :class="{ 'lastColumnFixed': !!actionSchema }">
-    <v-skeleton-loader :loading="loading && isFirstLoading" type="table,table-row@4" elevation="0" :width="widthTable"
-      :height="heightTable" class="tw-overflow-hidden">
-      <v-data-table-server v-bind="$attrs" id="tableWidthHeight" v-model="selected" :headers="showColumns" :items="items"
-        :loading="loading && !isFirstLoading" items-length="10">
-        <template v-for="(itemColumn, index) in columns" #[itemColumn.slotColumnName]="{ column }" :key="index">
-          <template v-if="itemColumn.key === 'action'">
-            <div class="tw-flex tw-justify-end">
-              <v-btn-refresh v-tooltip="'بارگیری مجدد'" size="small" style="z-index: 10;"
-                :class="[{ 'tw-animate-spin': loading }]" @click="reload" />
-              <v-btn-setting v-tooltip="'تنظیمات جدول'" size="small" @click="showSettingDialog = true" />
-            </div>
-          </template>
-          <template v-else>
-            <div class="tw-text-sm">
-              {{ column?.title }}
-            </div>
-          </template>
-        </template>
-
-        <template v-for="(column, index) in columns" #[column.slotName]="{ item }">
-          <template v-if="column.type === 'date'">
-            {{ getValue(column, item) && $moment(getValue(column, item)).format('jYYYY/jM/jD') }}
-          </template>
-          <template v-else-if="column.type === 'datetime'">
-            <div style="direction: ltr;">
-              {{ getValue(column, item) && $moment(getValue(column, item)).format('jYYYY/jM/jD - HH:mm') }}
-            </div>
-          </template>
-          <template v-else-if="column.type === 'time'">
-            <div>{{ getValue(column, item) && $moment(getValue(column, item)).format('HH:mm') }}</div>
-          </template>
-          <template v-else-if="column.type === 'boolean'">
-            <v-icon :color="getValue(column, item) ? 'success' : 'error'" class="tw-opacity-70"
-              :icon="getValue(column, item) ? 'fa-solid fa-check' : ''" v-bind="column.typeProps || {}" />
-          </template>
-          <template v-else-if="column.type === 'chip'">
-            <v-chip-table v-if="getValue(column, item)" :key="index" v-bind="column.typeProps || {}">
-              {{ getValue(column, item) }}
-            </v-chip-table>
-          </template>
-          <template v-else-if="column.type === 'chipGroup'">
-            <v-chip v-for="(chipItem, i) in getValue(column, item)" :key="i" class="tw-mx-1 tw-my-2" color="primary"
-              rounded="xl" variant="outlined" v-bind="column.typeProps || {}">
-              {{ typeof chipItem?.Title !== 'undefined' ? chipItem?.Title : chipItem.value ? chipItem.value : chipItem }}
-            </v-chip>
-          </template>
-          <template v-else-if="column.type === 'ellipsis'">
-            <div v-tooltip="getValue(column, item)"
-              :style="{ 'width': column.width, 'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'width': column.width }">
-              {{ getValue(column, item) }}
-            </div>
-          </template>
-          <template v-else-if="column.type === 'withAvatar'">
-            <div :key="index" class="tw-flex tw-items-center">
-              <div class="tw-flex-grow-0 tw-relative tw-pr-2">
-
-                <div class="tw-m-auto">
-                  <v-avatar class="!tw-rounded-xl tw-me-2" rounded="initial" size="30"
-                    :image="item?.Pic || avatarPlaceholder" />
-                </div>
-              </div>
-              <div class="tw-flex-grow">
-                <span class="tw-text-base"> {{ getValue(column, item) }}</span>
-              </div>
-            </div>
-          </template>
-          <template v-else>
-            <div :key="index">
-              {{ getValue(column, item) }}
-            </div>
-          </template>
-        </template>
-
-        <template v-for="(_, slot) of $slots" #[slot]="scope">
-          <slot :name="slot" v-bind="scope" />
-        </template>
-        <template v-if="actionSchema?.actions?.length" #[`item.action`]="allProps">
-          <div class="tw-flex tw-gap-1.5 tw-justify-end fixed tw-overflow-x-hidden"
-            :style="{ width: actionSchema?.width ? actionSchema.width : actionSchema?.actions.length * (32 + 6) }">
-            <slot name="item.action" v-bind="allProps" />
-            <template v-for="(action, index) in actionSchema?.actions" :key="index">
-              <v-btn-table v-if="(typeof action === 'object' && action.icon)" v-tooltip="action?.label || ''"
-                v-bind="action"
-                :disabled="!!action.disabledCondition ? action.disabledCondition(allProps.item?.raw) : false"
-                @click="action?.emit(allProps.item?.raw)" />
-              <v-btn-table-view v-if="(typeof action === 'string' && action === 'view')" v-tooltip="'مشاهده'"
-                @click="emit('onView', allProps.item)" />
-              <v-btn-table-edit v-if="(typeof action === 'string' && action === 'edit')" v-tooltip="'ویرایش'"
-                @click="emit('onEdit', allProps.item)" />
-              <v-btn-table-trash v-if="(typeof action === 'string' && action === 'delete')" v-tooltip="'حذف'"
-                @click="emit('onDelete', allProps.item)" />
-            </template>
+    <v-data-table v-bind="$attrs" id="tableWidthHeight" v-model="selected" :headers="showColumns" :items="items"
+      :loading="loading && !isFirstLoading" items-length="10">
+      <template v-for="(itemColumn, index) in columns" #[itemColumn.slotColumnName]="{ column }" :key="index">
+        <template v-if="itemColumn.key === 'action'">
+          <div class="tw-flex tw-justify-end">
+            <v-btn-refresh v-tooltip="'بارگیری مجدد'" size="small" style="z-index: 10;"
+              :class="[{ 'tw-animate-spin': loading }]" @click="reload" />
+            <v-btn-setting v-tooltip="'تنظیمات جدول'" size="small" @click="showSettingDialog = true" />
           </div>
         </template>
-        <template #bottom />
-      </v-data-table-server>
-    </v-skeleton-loader>
+        <template v-else>
+          <div class="tw-text-sm">
+            {{ column?.title }}
+          </div>
+        </template>
+      </template>
+
+      <template v-for="(column, index) in columns" #[column.slotName]="{ item }">
+        <div :key="index">
+          {{ item }}
+        </div>
+      </template>
+
+      <template v-for="(_, slot) of $slots" #[slot]="scope">
+        <slot :name="slot" v-bind="scope" />
+      </template>
+      <template v-if="actionSchema?.actions?.length" #[`item.action`]="allProps">
+        <div class="tw-flex tw-gap-1.5 tw-justify-end fixed tw-overflow-x-hidden"
+          :style="{ width: actionSchema?.width ? actionSchema.width : actionSchema?.actions.length * (32 + 6) }">
+          <slot name="item.action" v-bind="allProps" />
+          <template v-for="(action, index) in actionSchema?.actions" :key="index">
+            <v-btn-table v-if="(typeof action === 'object' && action.icon)" v-tooltip="action?.label || ''"
+              v-bind="action"
+              :disabled="!!action.disabledCondition ? action.disabledCondition(allProps.item?.raw) : false"
+              @click="action?.emit(allProps.item?.raw)" />
+            <v-btn-table-view v-if="(typeof action === 'string' && action === 'view')" v-tooltip="'مشاهده'"
+              @click="emit('onView', allProps.item)" />
+            <v-btn-table-edit v-if="(typeof action === 'string' && action === 'edit')" v-tooltip="'ویرایش'"
+              @click="emit('onEdit', allProps.item)" />
+            <v-btn-table-trash v-if="(typeof action === 'string' && action === 'delete')" v-tooltip="'حذف'"
+              @click="emit('onDelete', allProps.item)" />
+          </template>
+        </div>
+      </template>
+      <template #bottom />
+    </v-data-table>
     <pagination v-model="page" :length="totalPages" />
     <v-dialog-extend v-model="showSettingDialog" title="تنظیمات جدول" confirm-btn-text="اعمال" width="500"
       cancel-btn-text="انصراف" @on-cancel="showSettingDialog = false"

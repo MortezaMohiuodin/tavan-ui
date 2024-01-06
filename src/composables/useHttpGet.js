@@ -14,7 +14,7 @@ export const useHttpGet = ofetch.create({
     options.headers.Authorization = 'Bearer ' + useAppStore().token
   },
   async onResponse({ request, response, options }) {
-    if (response.status === 401 && useAppStore().isLoggedIn === true) {
+    if (response.status === 401) {
       useAppStore().resetIdentityData()
       router.push('/login')
     }
