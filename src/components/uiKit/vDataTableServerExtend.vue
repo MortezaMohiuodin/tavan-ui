@@ -1,6 +1,6 @@
 <template>
   <div class="vDatatableServerCustom" :class="{ 'lastColumnFixed': !!actionSchema }">
-    <v-data-table v-bind="$attrs" id="tableWidthHeight" v-model="selected" :headers="showColumns" :items="items"
+    <v-data-table-server v-bind="$attrs" id="tableWidthHeight" v-model="selected" :headers="showColumns" :items="items"
       :loading="loading && !isFirstLoading" items-length="10">
       <template v-for="(itemColumn, index) in columns" #[itemColumn.slotColumnName]="{ column }" :key="index">
         <template v-if="itemColumn.key === 'action'">
@@ -19,7 +19,7 @@
 
       <template v-for="(column, index) in columns" #[column.slotName]="{ item }">
         <div :key="index">
-          {{ item }}
+          {{ item[column.key] }}
         </div>
       </template>
 
@@ -45,7 +45,7 @@
         </div>
       </template>
       <template #bottom />
-    </v-data-table>
+    </v-data-table-server>
     <pagination v-model="page" :length="totalPages" />
     <v-dialog-extend v-model="showSettingDialog" title="تنظیمات جدول" confirm-btn-text="اعمال" width="500"
       cancel-btn-text="انصراف" @on-cancel="showSettingDialog = false"

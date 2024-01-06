@@ -28,7 +28,7 @@
     "vue-timer-hook": "^1.0.84",
     "vue3-perfect-scrollbar": "^1.6.1",
     "vue3-persian-datetime-picker": "^1.2.2",
-    "vuetify": "^3.3.14",
+    "vuetify": "^3.4.9",
     "vuetify3-resize-drawer": "^2.1.0",
     "webfontloader": "^1.0.0"
   },

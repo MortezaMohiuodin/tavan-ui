@@ -12,31 +12,31 @@ const tableSchema = [
     title: 'نام',
     key: 'name',
   },
-  // {
-  //   title: 'ایمیل',
-  //   key: 'email',
-  // },
-  // {
-  //   title: 'نقض',
-  //   key: 'role',
-  // },
-  // {
-  //   title: 'احراز شده',
-  //   key: 'verified',
-  // },
-  // {
-  //   title: 'موبایل',
-  //   key: 'phone',
-  // },
-  // {
-  //   title: 'تاریخ ثبت',
-  //   key: 'createdAt',
-  // },
-  // {
-  //   key: 'action',
-  //   align: 'center',
-  //   actions: [],
-  // },
+  {
+    title: 'ایمیل',
+    key: 'email',
+  },
+  {
+    title: 'نقض',
+    key: 'role',
+  },
+  {
+    title: 'احراز شده',
+    key: 'verified',
+  },
+  {
+    title: 'موبایل',
+    key: 'phone',
+  },
+  {
+    title: 'تاریخ ثبت',
+    key: 'createdAt',
+  },
+  {
+    key: 'action',
+    align: 'center',
+    actions: [],
+  },
 ]
 
 
