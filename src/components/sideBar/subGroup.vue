@@ -3,7 +3,24 @@
     v-for="item in menuProps.items"
     :key="item.id"
   >
+    <v-list-item
+      v-if="!!item.route"
+      :value="item.id"
+      :append-icon="item.icon"
+      :ripple="false"
+      :to="item.route"
+      @click="store.resetTempBySidebarClick()"
+    >
+      <v-icon
+        class="tw-mr-[50px] tw-mb-1 tw-transition-all"
+        :icon="item.icon ? item.icon : 'fa fa-circle'"
+        color="secondary"
+        size="10"
+      />
+      <span class="tw-mr-3 tw-text-white">{{ item.title }}</span>
+    </v-list-item>
     <v-list-group
+      v-else
       :value="item.id"
       collapse-icon=""
       expand-icon=""
@@ -54,7 +71,6 @@
         </v-list-item>
       </template>
     </v-list-group>
-   
   </template>
 </template>
 
@@ -64,7 +80,7 @@ const store = useAppStore()
 function hasRequirePermit(requirePermit) {
   // If the requirePermit property is undefined or empty, it means that it is not specifically dedicated to any spatial
   // Permit and can be shown to all users.
-    return false
+  return false
   // if (requirePermit === undefined || requirePermit.length === 0) return true
 
   // return requirePermit.filter(p => store.permits.includes(p)).length

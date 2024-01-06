@@ -1,7 +1,7 @@
 /**
  Helper functions to skip repeating code.
  */
- function extractRequirePermits(array) {
+function extractRequirePermits(array) {
   const requirePermits = []
   function traverse(children) {
     children.forEach(child=> {
@@ -22,31 +22,71 @@
  main menu items
 */
 
-const MAINItems =  [
+// const MAINItems =  [
+//   {
+//     title: 'پنل کاربری',
+//     requirePermit: [],
+//     requirePlugin: [],
+//     completelyDisable: false,
+//     lacksPermission: [],
+//     badgeKey: '',
+//     children: [
+//       {
+//         title: 'داشبورد',
+//         route: '/dashboard',
+//         requirePermit: [],
+//         requirePlugin: [],
+//         lacksPermission: [],
+//         completelyDisable: false,
+//         badgeKey: '',
+//       },
+//       {
+//         title: 'کاربران',
+//         route: '/dashboard/users',
+//         requirePermit: [],
+//         requirePlugin: [],
+//         lacksPermission: [],
+//         completelyDisable: false,
+//         badgeKey: '',
+//       },
+//     ],
+//   },
+// ]
+
+export const menuItems =  [
   {
-    title: 'پنل کاربری',
+    title: 'داشبورد',
+    route : '/dashboard',
     requirePermit: [],
     requirePlugin: [],
     completelyDisable: false,
     lacksPermission: [],
     badgeKey: '',
-    children: [
+  },
+  {
+    title: 'کاربران',
+    route : '/dashboard/users',
+    requirePermit: [],
+    requirePlugin: [],
+    completelyDisable: false,
+    lacksPermission: [],
+    badgeKey: '',
+  },
+  {
+    title: 'تنظیمات',
+    requirePermit: [],
+    requirePlugin: [],
+    completelyDisable: false,
+    lacksPermission: [],
+    badgeKey: '',
+    children : [
       {
-        title: 'داشبورد',
-        route: '/dashboard',
+        title: 'کلیات',
+        route : 'dashboard/setting/general',
         requirePermit: [],
         requirePlugin: [],
-        lacksPermission: [],
         completelyDisable: false,
-        badgeKey: '',
-      },
-      {
-        title: 'کاربران',
-        route: '/dashboard/users',
-        requirePermit: [],
-        requirePlugin: [],
         lacksPermission: [],
-        completelyDisable: false,
         badgeKey: '',
       },
     ],
@@ -55,20 +95,4 @@ const MAINItems =  [
 
 
 
-
-
-export const headCategories = [
-  {
-    title: 'بخص اصلی',
-    subTitle: 'مدیریت',
-    icon: 'custom:user',
-    requireProduct: [],
-    subGroup: 'MAIN',
-  },
-]
-export const menuItems = {
-  MAIN: [
-    ...MAINItems,
-  ],
-}
 

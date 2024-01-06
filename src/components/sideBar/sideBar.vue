@@ -23,29 +23,48 @@
         color="secondary"
       >
         <template
-          v-for="category in categories"
-          :key="category.id"
+          v-for="menuItem in menuItems"
+          :key="menuItem.id"
         >
+          <v-list-item
+            v-if="!!menuItem.route"
+            :prepend-avatar="menuItem.icon"
+            class="tw-mb-6"
+            :ripple="false"
+            :to="menuItem.route"
+            @click="store.resetTempBySidebarClick()"
+          >
+            <span class="tw-mr-2 tw-text-white"> {{ menuItem.title }}</span>
+            <template #prepend>
+              <div class="headCategoryIcon">
+                <v-icon
+                  :icon="menuItem.icon"
+                  size="20"
+                  class="tw-m-auto"
+                />
+              </div>
+            </template>
+          </v-list-item>
           <!--      product names -->
           <v-list-group
+            v-else
             class="tw-mb-5"
-            :value="category.id"
+            :value="menuItem.id"
           >
-            <template #activator="{ isOpen,props }">
+            <template
+              #activator="{ isOpen,props }"
+            >
               <v-list-item
                 v-bind="props"
-                prepend-avatar="custom:KARSAAT"
+                :prepend-avatar="menuItem.icon"
                 class="tw-mb-6"
                 :ripple="false"
               >
-                <span class="tw-mr-2 tw-text-white"> {{ category.title }}</span>
-                <template #subtitle>
-                  <span class="tw-mr-2 tw-text-white">{{ category.subTitle }}</span>
-                </template>
+                <span class="tw-mr-2 tw-text-white"> {{ menuItem.title }}</span>
                 <template #prepend>
                   <div class="headCategoryIcon">
                     <v-icon
-                      :icon="category.icon"
+                      :icon="menuItem.icon"
                       size="20"
                       class="tw-m-auto"
                     />
@@ -61,8 +80,12 @@
                 </template>
               </v-list-item>
             </template>
+           
             <!--    Define the category names, such as "Basic," "Assignment," and "Report," along with their corresponding submenus for each product.  -->
-            <sub-group :items="menuItems[category.subGroup]" />
+            <sub-group
+              v-if="!!menuItem.children"
+              :items="menuItem.children"
+            />
           </v-list-group>
         </template>
       </v-list>
@@ -71,16 +94,18 @@
 </template>
 
 <script setup>
-import { headCategories, menuItems } from '@/menu/menu'
+import { menuItems as MENU_ITEMS } from '@/menu/menu'
 
 const store = useAppStore()
-let categories = headCategories.map(headCategorie => ({ ...headCategorie, id: Math.floor(Math.random() * 1000) + 1 }))
+let menuItems = Object.entries(MENU_ITEMS).map(([key,value])=>{
+  return { key ,...value, id: Math.floor(Math.random() * 1000) + 1 }
+})
 let open = ref([])
 
 // fix vuetify bug : the issue is related to the open variable not being properly updated when a head category is closed
 // solution : watch the 'open' variable. If it contains only one element, it should be one of the category IDs. In any other case, the 'open' variable should be cleared
 watch(open, val=>{
-  if (val?.length === 1 && !categories.find(item => item.id === val[0])) { open.value = [] }
+  if (val?.length === 1 && !menuItems.find(item => item.id === val[0])) { open.value = [] }
 })
 </script>
 
