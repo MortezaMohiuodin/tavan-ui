@@ -21,7 +21,7 @@
           />
         </template>
         <v-list>
-          <v-list-item @click="store.logout()">
+          <v-list-item @click="store.token = null;$router.push('/login')">
             خروج
           </v-list-item>
         </v-list>
@@ -33,7 +33,6 @@
 <script setup>
 import { useDisplay } from 'vuetify'
 
-let token = ref(useLocalStorage('token', ''))
 const { smAndDown } = useDisplay()
 const store = useAppStore()
 </script>

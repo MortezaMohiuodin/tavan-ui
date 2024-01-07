@@ -7,8 +7,8 @@ export const useAppStore = defineStore('tavan', ()=>{
   const router = useRouter()
 
   // state
-  let token = ref(useLocalStorage('token', ''))
-  let tokenExpiration = ref(useLocalStorage('token',''))
+  let token = ref(useLocalStorage('token'))
+  let tokenExpiration = ref(useLocalStorage('token'))
   let userInfo = ref(null)
   let isAppReady = ref(false)
   let isLoggedIn = ref(false)
@@ -18,18 +18,24 @@ export const useAppStore = defineStore('tavan', ()=>{
   const getUserData =async ()=>{
     
     return new Promise(async (resolve,reject)=>{
-      let token = ref(useLocalStorage('token'))
       let user = ref(useLocalStorage('user'))
+      userInfo.value = user      
       if(!token.value) reject(false)
-      try{
-        const res = await useHttpGet('/profile')
+      resolve(true)
+      // if(user.value){
+      //   resolve(user.value)
+      // }else{
+      //   reject(false)
+      // }
+      // try{
+      //   const res = await useHttpGet('/profile')
 
-        user.value = res.user
-        resolve(user)
-      }catch(e){
-        reject(false)
-        router.push('/login')
-      }
+      //   user.value = res.user
+      //   resolve(user)
+      // }catch(e){
+      //   reject(false)
+      //   router.push('/login')
+      // }
     })
   }
 
@@ -64,7 +70,7 @@ export const useAppStore = defineStore('tavan', ()=>{
   }
 
   const logout =async ()=>{
-    const result = await useHttpGet('user/logout')
+    // const result = await useHttpGet('user/logout')
 
     resetIdentityData()
     reset()
