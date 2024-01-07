@@ -1,11 +1,23 @@
 <template>
-  <table-page-header />
+  <table-page-header :show-filter-btn="false" />
 
   <table-page-data
     ref="tableRef"
     :service="service"
     :table-schema="tableSchema"
-  />
+    :on-delete="onDelete"
+    @on-edit="val=>$router.push($route.fullPath + '/edit/' + val.id)"
+  >
+    <template #[`item.role`]="{item}">
+      <v-chip
+        rounded
+        variant="tonal"
+        color="info"
+      >
+        {{ $getEnum($enums.role,'key',item.role,'value') }} 
+      </v-chip>
+    </template>
+  </table-page-data>
 </template>
   
 <script setup>
@@ -21,12 +33,13 @@ const tableSchema = [
     key: 'email',
   },
   {
-    title: 'نقض',
+    title: 'نقش',
     key: 'role',
   },
   {
     title: 'احراز شده',
     key: 'verified',
+    type : 'boolean',
   },
   {
     title: 'موبایل',
@@ -35,11 +48,12 @@ const tableSchema = [
   {
     title: 'تاریخ ثبت',
     key: 'createdAt',
+    type: 'date',
   },
   {
     key: 'action',
     align: 'center',
-    actions: [],
+    actions: ['edit','delete'],
   },
 ]
 
@@ -57,11 +71,25 @@ const service = async (payload = {}) => {
 
     const res = await useHttpGet('/users', { params })
 
-    res['Data'] = res.docs
+    res['Data'] = res.docs.map(val=>({ ...val,id : val._id }))
     res['TotalRow'] = res.totalDocs
 
     return res
   } catch (e) {
+    throw new Error(e)
+  }
+}
+
+const onDelete = async val=>{
+  const id = val.id
+
+  try{
+    const res = await useHttpGet(`users/${id}`,{ method:'DELETE' })
+
+    tableRef.value.restart()
+
+    return res
+  }catch(e){
     throw new Error(e)
   }
 }

@@ -43,8 +43,19 @@
       <template
         v-for="(column, index) in columns"
         #[column.slotName]="{ item }"
+        :key="index"
       >
-        <div :key="index">
+        <div v-if="column.type === 'date'">
+          {{ $moment(item[column.key]).format('jYYYY-jMM-jDD') }}
+        </div>
+        <div v-else-if="column.type === 'boolean'">
+          <v-icon
+            :icon="item[column.key] ? 'fa fa-check' : 'fa fa-times'"
+            :color="item[column.key] ? 'success' : 'error'"
+            size="20"
+          />
+        </div>
+        <div v-else>
           {{ item[column.key] }}
         </div>
       </template>

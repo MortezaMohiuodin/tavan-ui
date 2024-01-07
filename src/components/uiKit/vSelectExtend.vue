@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-import { useLists } from '@/store/lists'
 import { uuidv4 } from '@/helper/utility'
 
 const props = defineProps({

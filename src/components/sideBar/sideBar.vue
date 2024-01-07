@@ -40,6 +40,7 @@
                 <v-icon
                   :icon="menuItem.icon"
                   size="20"
+                  color="primary"
                   class="tw-m-auto"
                 />
               </div>
@@ -64,6 +65,7 @@
                 <template #prepend>
                   <div class="headCategoryIcon">
                     <v-icon
+                      color="primary"
                       :icon="menuItem.icon"
                       size="20"
                       class="tw-m-auto"

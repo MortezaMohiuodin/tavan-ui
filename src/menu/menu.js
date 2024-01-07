@@ -22,40 +22,12 @@ function extractRequirePermits(array) {
  main menu items
 */
 
-// const MAINItems =  [
-//   {
-//     title: 'پنل کاربری',
-//     requirePermit: [],
-//     requirePlugin: [],
-//     completelyDisable: false,
-//     lacksPermission: [],
-//     badgeKey: '',
-//     children: [
-//       {
-//         title: 'داشبورد',
-//         route: '/dashboard',
-//         requirePermit: [],
-//         requirePlugin: [],
-//         lacksPermission: [],
-//         completelyDisable: false,
-//         badgeKey: '',
-//       },
-//       {
-//         title: 'کاربران',
-//         route: '/dashboard/users',
-//         requirePermit: [],
-//         requirePlugin: [],
-//         lacksPermission: [],
-//         completelyDisable: false,
-//         badgeKey: '',
-//       },
-//     ],
-//   },
-// ]
+
 
 export const menuItems =  [
   {
     title: 'داشبورد',
+    icon : 'fa fa-dashboard',
     route : '/dashboard',
     requirePermit: [],
     requirePlugin: [],
@@ -65,6 +37,7 @@ export const menuItems =  [
   },
   {
     title: 'کاربران',
+    icon : 'fa fa-users',
     route : '/dashboard/users',
     requirePermit: [],
     requirePlugin: [],
@@ -74,6 +47,7 @@ export const menuItems =  [
   },
   {
     title: 'تنظیمات',
+    icon : 'fa fa-tools',
     requirePermit: [],
     requirePlugin: [],
     completelyDisable: false,

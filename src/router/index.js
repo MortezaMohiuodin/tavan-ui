@@ -22,13 +22,14 @@ const router = createRouter({
   },
 })
 
-// router.beforeEach(async (to, from) => {
-//   const store = useAppStore()
+router.beforeEach(async (to, from) => {
+  const store = useAppStore()
 
-//   if (!store.isLoggedIn && !to.fullPath.includes('/login')){
-//     return({ name: 'login',query: to.query })
-//   }
-//   if (store.isLoggedIn && to.fullPath === '/login') return '/'
-// })
+  await store.initStore()
+  if (!store.isLoggedIn && !to.fullPath.includes('/login')){
+    return({ name: 'login',query: to.query })
+  }
+  if (store.isLoggedIn && to.fullPath === '/login') return '/'
+})
 
 export default router

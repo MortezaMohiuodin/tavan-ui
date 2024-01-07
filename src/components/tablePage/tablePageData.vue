@@ -1,19 +1,45 @@
 <template>
   <div class="tablePageData">
     <!--  desktop view  -->
-    <v-data-table-server-extend v-if="!mobileSchema || !smAndDown" ref="datatableRef" v-model="selected"
-      :columns="columns" :service="service" item-value="Id" v-bind="$attrs" :items-per-page="props.itemsPerPage"
-      @on-edit="val => emit('onEdit', val)" @on-delete="onDelete" @on-view="onView">
-      <template v-for="(_, slot) of slots" #[slot]="scope">
-        <slot :name="slot" v-bind="scope" />
+    <v-data-table-server-extend
+      v-if="!mobileSchema || !smAndDown"
+      ref="datatableRef"
+      v-model="selected"
+      :columns="columns"
+      :service="service"
+      item-value="Id"
+      v-bind="$attrs"
+      :items-per-page="props.itemsPerPage"
+      @on-edit="val => emit('onEdit', val)"
+      @on-delete="onDelete"
+      @on-view="onView"
+    >
+      <template
+        v-for="(_, slot) of slots"
+        #[slot]="scope"
+      >
+        <slot
+          :name="slot"
+          v-bind="scope"
+        />
       </template>
     </v-data-table-server-extend>
 
     <!-- mobile view -->
-    <infinite-list-mobile v-else ref="infiniteListRef" :columns="tableSchema" :service="service"
-      @on-edit="val => emit('onEdit', val)" @on-delete="onDelete" @on-view="onView">
+    <infinite-list-mobile
+      v-else
+      ref="infiniteListRef"
+      :columns="tableSchema"
+      :service="service"
+      @on-edit="val => emit('onEdit', val)"
+      @on-delete="onDelete"
+      @on-view="onView"
+    >
       <template #action="item">
-        <slot name="item.action" v-bind="{ item: item }" />
+        <slot
+          name="item.action"
+          v-bind="{ item: item }"
+        />
       </template>
     </infinite-list-mobile>
   </div>
@@ -21,11 +47,27 @@
   <!--  table modals -->
 
   <!--  view row in modal -->
-  <item-dialog v-if="smAndDown" v-model="viewModal" :item="item" />
+  <item-dialog
+    v-if="smAndDown"
+    v-model="viewModal"
+    :item="item"
+  />
   <!--  delete modal -->
 
-  <remove-dialog v-model="trashModal" :loading="deleteLoading" @on-confirm="handleDeleteConfirm"
-    @on-cancel="trashModal = false" />
+  <v-dialog-extend
+    v-model="trashModal"
+    color="error"
+    title="حذف رکورد"
+    cancel-btn-text="انصراف"
+    :loading="deleteLoading"
+    confirm-btn-text="حذف"
+    @on-confirm="handleDeleteConfirm"
+    @on-cancel="trashModal = false"
+  >
+    <p class="tw-my-10 tw-ps-5">
+      آیا این مورد حذف شود؟
+    </p>
+  </v-dialog-extend>
 </template>
 
 <script setup>

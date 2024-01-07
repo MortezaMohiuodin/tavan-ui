@@ -79,7 +79,7 @@
                         :model-value="value[field.model]"
                         :rules="field.required ? [x=>!!x || 'این فیلد را پر کنید'] : [] "
                         v-bind="field"
-                        @update:modelValue="val=>updateFormValue(field.model,val)"
+                        @update:model-value="val=>updateFormValue(field.model,val)"
                       />
                     </div>
                   </template>

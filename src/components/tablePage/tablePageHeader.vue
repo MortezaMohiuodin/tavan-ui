@@ -24,7 +24,7 @@
       >
         فیلتر
       </v-btn-filter>
-      <v-btn-add
+      <v-btn-add-item
         v-if="showAddItemLink"
         class="tw-ms-3"
         v-bind="vBtnAddProps"

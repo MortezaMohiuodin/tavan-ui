@@ -2,7 +2,10 @@
 <template>
   <div class="loginContainer">
     <div class="logoContainer">
-      <img src="@/assets/images/dotin.png" class="tw-h-full tw-w-full tw-object-cover tw-hidden">
+      <img
+        src="@/assets/images/dotin.png"
+        class="tw-h-full tw-w-full tw-object-cover tw-hidden"
+      >
     </div>
     <div class="fieldContainer">
       <div class="fieldWrapper">
@@ -14,23 +17,58 @@
         </div>
         <div>
           <v-form @submit.prevent="login">
-            <v-c-text-field v-model="email" variant="solo-filled" clearable class="LoginTextField mb-4" color="#8CB6A4"
-              autocomplete="new-password">
+            <v-c-text-field
+              v-model="email"
+              variant="solo-filled"
+              clearable
+              class="LoginTextField mb-4"
+              color="#8CB6A4"
+              autocomplete="new-password"
+            >
               <template #label>
-                <v-icon icon="mdi:mdi-email" size="18" class="tw-mb-[4px]" color="#8CB6A4" />
-                <span color="#8CB6A4" class="tw-mr-[3px] tw-text-[13px]">نام کاربری</span>
+                <v-icon
+                  icon="mdi:mdi-email"
+                  size="18"
+                  class="tw-mb-[4px]"
+                  color="#8CB6A4"
+                />
+                <span
+                  color="#8CB6A4"
+                  class="tw-mr-[3px] tw-text-[13px]"
+                >نام کاربری</span>
               </template>
             </v-c-text-field>
-            <v-c-text-field v-model="password" autocomplete="new-password"
+            <v-c-text-field
+              v-model="password"
+              autocomplete="new-password"
               :append-inner-icon="showPassword ? 'mdi:mdi-eye-off-outline' : 'custom:eye'"
-              :type="showPassword ? 'text' : 'password'" label="رمز عبور" variant="solo-filled" clearable
-              class="LoginTextField" color="#8CB6A4" @click:append-inner="showPassword = !showPassword">
+              :type="showPassword ? 'text' : 'password'"
+              label="رمز عبور"
+              variant="solo-filled"
+              clearable
+              class="LoginTextField"
+              color="#8CB6A4"
+              @click:append-inner="showPassword = !showPassword"
+            >
               <template #label>
-                <v-icon icon="mdi:mdi-lock-outline" size="18" class="tw-mb-4px" color="#8CB6A4" />
-                <span color="#8CB6A4" class="tw-mr-[3px] tw-text-[13px] ">رمز عبور</span>
+                <v-icon
+                  icon="mdi:mdi-lock-outline"
+                  size="18"
+                  class="tw-mb-4px"
+                  color="#8CB6A4"
+                />
+                <span
+                  color="#8CB6A4"
+                  class="tw-mr-[3px] tw-text-[13px] "
+                >رمز عبور</span>
               </template>
             </v-c-text-field>
-            <v-btn-warning color="orange" class="tw-mr-0 tw-mt-8 tw-w-full" :loading="loading" type="submit">
+            <v-btn-warning
+              color="orange"
+              class="tw-mr-0 tw-mt-8 tw-w-full"
+              :loading="loading"
+              type="submit"
+            >
               ورود
             </v-btn-warning>
           </v-form>
@@ -46,11 +84,12 @@
 </template>
 
 <script setup>
+import { ofetch } from 'ofetch'
+
 const router = useRouter()
 const route = useRoute()
-import { ofetch } from 'ofetch'
 const token = ref(useLocalStorage('token'))
-const user = ref(useLocalStorage('user'))
+// const user = ref(useLocalStorage('user'))
 
 let showPassword = ref(false)
 let password = ref(null)
@@ -71,7 +110,7 @@ async function login() {
     })
 
     token.value = response.token
-    user.value = response.user
+    // user.value = response.user
     await store.initStore()
     router.push('/dashboard')
 

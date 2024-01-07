@@ -3,6 +3,17 @@ const enums = {
     { key : 0 , value : 'فعال' },
     { key : 1 , value : 'غیرفعال' },
   ],
+  gender : [
+    { key : 0 , value : 'مرد' },
+    { key : 1 , value : 'زن' },
+  ],
+  role : [
+    { key : 'admin' , value : 'ادمین' },
+    { key : 'secretary' , value : 'منشی' },
+    { key : 'patient' , value : 'توانجو' },
+    { key : 'doctor' , value : 'توانبخش' },
+    { key : 'user' , value : 'کاربر ساده' },
+  ],
 }
 
 const getEnum = (from = null, where = null, is = null, select = null) => {
