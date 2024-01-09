@@ -1,16 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import generatedRoutes from 'virtual:generated-pages'
+import routes from 'virtual:generated-pages'
 import NotFound from '../components/NotFound'
-import { setupLayouts } from 'virtual:generated-layouts'
 import { useAppStore } from '@/store/app'
+import { setupLayouts } from 'virtual:generated-layouts'
 
-let routes = null
-routes = setupLayouts(generatedRoutes)
+const generatedRoutes  = setupLayouts(routes)
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: [
-    ...routes,
+    ...generatedRoutes,
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   ],
   scrollBehavior(to, from, savedPosition) {
