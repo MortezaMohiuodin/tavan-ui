@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { VueQueryPlugin } from "vue-query"
 
 import { registerPlugins } from '@/plugins'
 import tooltip from './directives/tooltip'
@@ -13,6 +14,7 @@ import './assets/overwriteVutifyClass.scss'
 const app = createApp(App)
 
 app.directive('tooltip',tooltip)
+app.use(VueQueryPlugin)
 
 registerPlugins(app)
 

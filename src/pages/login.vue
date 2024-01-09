@@ -16,7 +16,7 @@
           ایمیل و رمز عبور را وارد نمایید
         </div>
         <div>
-          <v-form @submit.prevent="login">
+          <v-form @submit.prevent="handleLogin">
             <v-c-text-field
               v-model="email"
               variant="solo-filled"
@@ -84,7 +84,7 @@
 </template>
 
 <script setup>
-import { ofetch } from 'ofetch'
+import { login } from '@/services'
 import { isTokenValid } from '@/helper/validations'
 
 const router = useRouter()
@@ -96,18 +96,16 @@ let email = ref(null)
 let loading = ref(false)
 let store = useAppStore()
 
-async function login() {
+async function handleLogin() {
   try {
     loading.value = true
 
-    const body = {
+    const payload = {
       email: email.value,
       password: password.value,
     }
 
-    const response = await useHttpPost('/login', {
-      body,
-    })
+    const response = await login(payload)
 
     if(isTokenValid(response.token)){
       token.value = response.token

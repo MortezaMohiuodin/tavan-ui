@@ -30,6 +30,9 @@
 
 <script setup>
 import { useAppStore } from '@/store/app'
+import { useQueryProvider } from "vue-query"
+
+useQueryProvider()
 
 const store = useAppStore()
 let layoutIsRtl = ref(true)

@@ -3,11 +3,11 @@
     <!--  header -->
     <div class="headerContainer">
       <div class="headerWrapIcon">
-        <v-icon
-          icon="custom:logo"
-          size="70"
-          class="tw-m-auto"
-        />
+        <img
+          :src="logo"
+          width="70"
+          class="tw-inline-block tw-m-auto"
+        >
       </div>
     </div>
     <!--  items -->
@@ -96,6 +96,7 @@
 </template>
 
 <script setup>
+import logo from '@/assets/images/logo.png'
 import { menuItems as MENU_ITEMS } from '@/menu/menu'
 
 const store = useAppStore()
