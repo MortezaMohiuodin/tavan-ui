@@ -24,6 +24,7 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
   const store = useAppStore()
 
+  await store.initStore()
   if (to.fullPath.includes('dashboard') && !store.token) {
     return '/login'
   }

@@ -1,5 +1,6 @@
 import { defineStore  } from 'pinia'
 import { addMinutes, format } from 'date-fns'
+import { isTokenValid } from '@/helper/validations'
 
 const MINUTES_TO_CHECK_FOR_TOKEN_REFRESH = 1440
 
@@ -18,24 +19,16 @@ export const useAppStore = defineStore('tavan', ()=>{
   const getUserData =async ()=>{
     
     return new Promise(async (resolve,reject)=>{
-      let user = ref(useLocalStorage('user'))
-      userInfo.value = user      
-      if(!token.value) reject(false)
-      resolve(true)
-      // if(user.value){
-      //   resolve(user.value)
-      // }else{
-      //   reject(false)
-      // }
-      // try{
-      //   const res = await useHttpGet('/profile')
+      if(!isTokenValid(token.value)) reject(false)
+      else{
+        try{
+          const res = await useHttpGet('/profile')
 
-      //   user.value = res.user
-      //   resolve(user)
-      // }catch(e){
-      //   reject(false)
-      //   router.push('/login')
-      // }
+          resolve(res)
+        }catch(e){
+          reject(false)
+        }
+      }
     })
   }
 
@@ -65,7 +58,11 @@ export const useAppStore = defineStore('tavan', ()=>{
 
 
   async function initStore() {
-    isLoggedIn.value = await getUserData() 
+    const user = await getUserData()
+    if(user){
+      userInfo.value = user 
+      isLoggedIn.value = true  
+    }
     isAppReady.value = true
   }
 

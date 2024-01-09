@@ -3,7 +3,7 @@
   <div class="loginContainer">
     <div class="logoContainer">
       <img
-        src="@/assets/images/dotin.png"
+        src="@/assets/images/logo.png"
         class="tw-h-full tw-w-full tw-object-cover tw-hidden"
       >
     </div>
@@ -85,36 +85,36 @@
 
 <script setup>
 import { ofetch } from 'ofetch'
+import { isTokenValid } from '@/helper/validations'
 
 const router = useRouter()
-const route = useRoute()
 const token = ref(useLocalStorage('token'))
-// const user = ref(useLocalStorage('user'))
 
 let showPassword = ref(false)
 let password = ref(null)
 let email = ref(null)
 let loading = ref(false)
 let store = useAppStore()
+
 async function login() {
   try {
     loading.value = true
 
-    const response = await ofetch('/login', {
-      baseURL: 'http://localhost:3000',
-      method: 'POST',
-      body: {
-        email: email.value,
-        password: password.value,
-      },
+    const body = {
+      email: email.value,
+      password: password.value,
+    }
+
+    const response = await useHttpPost('/login', {
+      body,
     })
 
-    token.value = response.token
-    // user.value = response.user
-    await store.initStore()
-    router.push('/dashboard')
-
-
+    if(isTokenValid(response.token)){
+      token.value = response.token
+      await store.initStore()
+      router.push('/dashboard')
+    }
+   
   } catch (error) {
     console.error(error)
   } finally {

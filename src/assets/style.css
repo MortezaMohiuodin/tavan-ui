@@ -1,8 +1,14 @@
 @import "fonts/fonts.scss";
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
+    html,body{
+        font-family: 'YEKAN-BAKH-REGULAR';
+    }
     html {
         direction: rtl;
         overflow-x: hidden ;

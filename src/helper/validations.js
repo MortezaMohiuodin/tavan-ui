@@ -15,4 +15,5 @@ export const minLength = (
   min,
   label) => v.length >= min || i18n.global.t("validation.minLength", { label, min })
 
+export const isTokenValid = v => !!v
 
