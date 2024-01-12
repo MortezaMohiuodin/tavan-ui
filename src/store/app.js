@@ -58,12 +58,17 @@ export const useAppStore = defineStore('tavan', ()=>{
 
 
   async function initStore() {
-    const user = await getUserData()
-    if(user){
-      userInfo.value = user 
-      isLoggedIn.value = true  
+    try{
+      const user = await getUserData()
+      if(user){
+        userInfo.value = user 
+        isLoggedIn.value = true  
+      }
+      isAppReady.value = true
+    }catch(e){
+      isAppReady.value = true
     }
-    isAppReady.value = true
+    
   }
 
   const logout =async ()=>{

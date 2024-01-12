@@ -84,7 +84,6 @@
 </template>
 
 <script setup>
-import { login } from '@/services'
 import { isTokenValid } from '@/helper/validations'
 
 const router = useRouter()
@@ -117,6 +116,14 @@ async function handleLogin() {
     console.error(error)
   } finally {
     loading.value = false
+  }
+}
+
+const login = async payload=>{
+  try{
+    return await useHttpPost('/login',{ body:payload })
+  }catch(e){
+    throw new Error(e)
   }
 }
 </script>
