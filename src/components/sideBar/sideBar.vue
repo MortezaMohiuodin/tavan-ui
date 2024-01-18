@@ -5,7 +5,7 @@
       <div class="headerWrapIcon">
         <img
           :src="logo"
-          width="70"
+          width="60"
           class="tw-inline-block tw-m-auto"
         >
       </div>

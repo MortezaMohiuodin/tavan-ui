@@ -3,14 +3,20 @@
   <div class="loginContainer">
     <div class="logoContainer">
       <img
-        src="@/assets/images/logo.png"
-        class="tw-h-full tw-w-full tw-object-cover tw-hidden"
+        src="@/assets/images/crm.jpg"
+        class="tw-object-cover tw-w-full tw-h-full"
       >
     </div>
     <div class="fieldContainer">
       <div class="fieldWrapper">
-        <div class="loginTitle">
-          ورود به پنل
+        <img
+          src="@/assets/images/logo.png"
+          class="tw-object-cover"
+          width="100"
+        > 
+       
+        <div class="loginTitle tw-mt-4">
+          ورود به سامانه گاما
         </div>
         <div class="loginSubtitle">
           ایمیل و رمز عبور را وارد نمایید
@@ -63,14 +69,16 @@
                 >رمز عبور</span>
               </template>
             </v-c-text-field>
-            <v-btn-warning
-              color="orange"
+            <v-btn
+              color="secondary"
+              size="large"
+              :elevation="0"
               class="tw-mr-0 tw-mt-8 tw-w-full"
               :loading="loading"
               type="submit"
             >
               ورود
-            </v-btn-warning>
+            </v-btn>
           </v-form>
           <!--          <VCheckboxPrimary> -->
           <!--            <template #label> -->
@@ -134,7 +142,7 @@ const login = async payload=>{
 }
 
 .logoContainer {
-  @apply lg:tw-mr-[35%] tw-h-full tw-w-full tw-p-[35px] tw-hidden md:tw-block
+  @apply  tw-h-full tw-w-full  tw-hidden md:tw-block tw-relative 
 }
 
 .fieldContainer {
